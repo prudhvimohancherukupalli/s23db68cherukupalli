@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}.
+
+  -
+    let results = [
+      { style: 'Fedora', color: 'Black', price: 50 },
+      { style: 'Beanie', color: 'Red', price: 20 },
+      { style: 'Top Hat', color: 'Purple', price: 80 }
+    ];
+  div.container-fluid
+    div.row.d-flex.flex-row
+      each hat,index in results
+        div.col-sm-2(onclick=`buy(${index})`)
+          div
+            h3 Style: #{hat.style}
+            p Color: #{hat.color}
+            p Price: $#{hat.price}
+  script.
+    function buy(index) {
+      alert(`You purchased item ${index}.`);
+    }
