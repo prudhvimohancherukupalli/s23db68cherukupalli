@@ -12,7 +12,7 @@ router.post('/hats', hats_controller.hats_create_post);
 // DELETE request to delete hats.
 router.delete('/hats/:id', hats_controller.hats_delete);
 // PUT request to update hats.
-router.put('/hats/:id', hats_controller.hats_update_put);
+router.put('/hats/:id',express.urlencoded({ extended: true }), hats_controller.hats_update_put);
 // GET request for one hats.
 router.get('/hats/:id', hats_controller.hats_detail);
 // GET request for list of all hats items.
