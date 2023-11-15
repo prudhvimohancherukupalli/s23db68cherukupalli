@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h1= title
+  - let hatid = toShow._id
+  - let hatstyle = toShow.style
+  - let hatcolor = toShow.color
+  - let hatprice = toShow.price
+  div
+    div.row
+      div(class='hatAttr mr-3') hat ID is:
+      div #{hatid}
+    div.row
+      div(class='hatAttr mr-3') hat Style is:
+      div #{hatstyle}
+    div.row
+      div(class='hatAttr mr-3') hat Color is:
+      div #{hatcolor}
+    div.row
+      div(class='hatAttr mr-3') hat Price is:
+      div
