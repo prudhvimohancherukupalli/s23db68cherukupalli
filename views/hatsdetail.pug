@@ -2,20 +2,23 @@ extends layout
 
 block content
   h1= title
-  - let hatid = toShow._id
-  - let hatstyle = toShow.style
-  - let hatcolor = toShow.color
-  - let hatprice = toShow.price
-  div
-    div.row(style='margin-bottom: 10px;')
-      div(class='hatAttr mr-3') hat ID is:
-      div #{hatid}
-    div.row(style='margin-bottom: 10px;')
-      div(class='hatAttr mr-3') hat Style is:
-      div #{hatstyle}
-    div.row(style='margin-bottom: 10px;')
-      div(class='hatAttr mr-3') hat Color is:
-      div #{hatcolor}
-    div.row(style='margin-bottom: 10px;')
-      div(class='hatAttr mr-3') hat Price is:
-      div
+  if (toShow == null)
+    h2 No instance to detail
+  else
+    - let hatid = toShow._id
+    - let hatstyle = toShow.style
+    - let hatcolor = toShow.color
+    - let hatprice = toShow.price
+    div
+      div.row(style='margin-bottom: 10px;')
+        div(class='hatAttr mr-3') hat ID is:
+          div #{hatid}
+      div.row(style='margin-bottom: 10px;')
+        div(class='hatAttr mr-3') hat Style is:
+          div #{hatstyle}
+      div.row(style='margin-bottom: 10px;')
+        div(class='hatAttr mr-3') hat Color is:
+          div #{hatcolor}
+      div.row(style='margin-bottom: 10px;')
+        div(class='hatAttr mr-3') hat Price is:
+          div #{hatprice}

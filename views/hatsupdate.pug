@@ -2,39 +2,42 @@ extends layout
 
 block content
   h1= title
-  - let hatid = toShow._id
-  - let style = toShow.style
-  - let color = toShow.color
-  - let price = toShow.price
-  div.row(class='mb-2 row-margin')
-    div.label-margin ID is
-      div #{hatid}
-  - let actionid = "/resource/hats/" + hatid
-  form(id='hatsForm', action= actionid, method="PUT")
-    div.form-group
-      label.hatAttr(for='style') hat style
-      input#style(type='text', name='style', value= style )
-    div.form-group
-      label.hatAttr(for='color') hat color
-      input#color(type='text', name='color', value= color )
-    div.form-group
-      label.hatAttr(for='price') hat price
-      input#price(type='number', name='price', value= price )
-    input(type="submit")
-  script.
-    document.forms['hatsForm'].addEventListener('submit', (event) => {
-      event.preventDefault();
-      // TODO do something here to show the user that the form is being submitted
-      fetch(event.target.action, {
-        method: 'PUT',
-        body: new URLSearchParams(new FormData(event.target)) // event.target is the form
-      }).then((resp) => {
-        return resp.json(); // or resp.text() or whatever the server sends
-      }).then((body) => {
-        alert("Update succeeded");
-        // TODO handle body
-      }).catch((error) => {
-        // TODO handle error
-        alert("Update failed " + error );
+  if (toShow == null)
+    h2 No instance to Update
+  else
+    - let hatid = toShow._id
+    - let style = toShow.style
+    - let color = toShow.color
+    - let price = toShow.price
+    div.row(class='mb-2 row-margin')
+      div.label-margin ID is
+        div #{hatid}
+    - let actionid = "/resource/hats/" + hatid
+    form(id='hatsForm', action= actionid, method="PUT")
+      div.form-group
+        label.hatAttr(for='style') hat style
+        input#style(type='text', name='style', value= style )
+      div.form-group
+        label.hatAttr(for='color') hat color
+        input#color(type='text', name='color', value= color )
+      div.form-group
+        label.hatAttr(for='price') hat price
+        input#price(type='number', name='price', value= price )
+      input(type="submit")
+    script.
+      document.forms['hatsForm'].addEventListener('submit', (event) => {
+        event.preventDefault();
+        // TODO do something here to show the user that the form is being submitted
+        fetch(event.target.action, {
+          method: 'PUT',
+          body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+        }).then((resp) => {
+          return resp.json(); // or resp.text() or whatever the server sends
+        }).then((body) => {
+          alert("Update succeeded");
+          // TODO handle body
+        }).catch((error) => {
+          // TODO handle error
+          alert("Update failed " + error );
+        });
       });
-    });
