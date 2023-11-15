@@ -6,8 +6,8 @@ block content
   - let style = toShow.style
   - let color = toShow.color
   - let price = toShow.price
-  div.row(class='mb-2')
-    div.mr-1 ID is
+  div.row(class='mb-2 row-margin')
+    div.label-margin ID is
       div #{hatid}
   - let actionid = "/resource/hats/" + hatid
   form(id='hatsForm', action= actionid, method="PUT")
