@@ -14,12 +14,18 @@ block content
   div.container-fluid
     div.row.d-flex.flex-row
       each hat,index in results
-        div.col-sm-2(onclick=`buy(${index})`)
+        - let destination = `dispatch("/hats/update?id=${hat._id}")`
+        div.col-sm-2
           div
             h3 Style: #{hat.style}
             p Color: #{hat.color}
             p Price: $#{hat.price}
+            button.btn.btn-primary(onclick=destination) Update
   script.
-    function buy(index) {
-      alert(`You purchased item ${index}.`);
+    //- function buy(index) {
+    //-   alert(`You purchased hat ${index}.`);
+    //- }
+    function dispatch(path){
+      window.location.href=path
     }
+
