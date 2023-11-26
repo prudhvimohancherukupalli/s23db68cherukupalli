@@ -3,19 +3,12 @@ extends layout
 block content
   h1= title
   p Welcome to #{title} and this is the Initial page.
-
-  button(type="button", class="btn btn-primary", onclick='goFaster()') Press Me
-
-  div#faster Increase the speed.
-
-  script.
-    var mph = 20;
-    var change = 1;
-    function goFaster() {
-      mph += change;
-      change += 1;
-      document.getElementById("faster").innerText = `MPH ${mph} with Change ${change}`;
-    }
-
-    console.log("running on http://localhost:3000/")
-  a(href='/hats') View Hats
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/hats") Take me to costumes
+    br
+    a(href="/logout") Logout

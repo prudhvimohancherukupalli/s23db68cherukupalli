@@ -6,21 +6,12 @@ block content
 
   -
      let results = DBresults
-     //[
-    //   { style: 'Fedora', color: 'Black', price: 50 },
-    //   { style: 'Beanie', color: 'Red', price: 20 },
-    //   { style: 'Top Hat', color: 'Purple', price: 80 }
-    // ];
   div.container-fluid
     div.row.d-flex.flex-row
       each hat,index in results
         - let destination = `dispatch("/hats/update?id=${hat._id}")`
-        div.col-sm-2
-          div
-            h3 Style: #{hat.style}
-            p Color: #{hat.color}
-            p Price: $#{hat.price}
-            button.btn.btn-primary(onclick=destination) Update
+        div(class="row-sm-2", class="m-1") Hat #{hat.style}(#{hat.color}) is #{hat.price}
+          button.btn.btn-primary(onclick=destination) Update
   script.
     //- function buy(index) {
     //-   alert(`You purchased hat ${index}.`);
