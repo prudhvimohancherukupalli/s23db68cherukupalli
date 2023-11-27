@@ -7,16 +7,23 @@ block content
   -
      let results = DBresults
   div.container-fluid
-    div.row.d-flex.flex-row
+    - let destination = `dispatch(\"/hats/create\")`
+    p.create-btn-container
+      button.btn.btn-success.mb-3(onclick= destination) Create new hats item
+    div.row
       each hat,index in results
-        - let destination = `dispatch("/hats/update?id=${hat._id}")`
-        div(class="row-sm-2", class="m-1") Hat #{hat.style}(#{hat.color}) is #{hat.price}
-          button.btn.btn-primary(onclick=destination) Update
+        - let destination1 = `dispatch("/hats/update?id=${hat._id}")`
+        - let destination2 = `dispatch("/hats/detail?id=${hat._id}")`
+        - let destination3 = `dispatch("/hats/delete?id=${hat._id}")`
+        div(class="col-md- mb-8")
+          .card
+            .card-body
+              h5.card-title Hat #{hat.style}(#{hat.color}) is #{hat.price} : 
+                button.btn.btn-warning.btn-sm.ml-1(onclick=destination1) Update  
+                button.btn.btn-primary.btn-sm.ml-1(onclick=destination2) Detail  
+                button.btn.btn-danger.btn-sm.ml-1(onclick=destination3) Delete
+        
   script.
-    //- function buy(index) {
-    //-   alert(`You purchased hat ${index}.`);
-    //- }
     function dispatch(path){
       window.location.href=path
     }
-
