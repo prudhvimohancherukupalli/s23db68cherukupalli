@@ -72,9 +72,14 @@ router.post("/login", passport.authenticate("local",{keepSessionInfo:true}), fun
 
 // Logout route
 router.get('/logout', function(req, res) {
-  req.logout();
-  res.redirect('/'); 
+  req.logout(function(err) {
+    if (err) {
+      return next(err);
+    }
+    res.redirect('/');
+  });
 });
+
 
 // Ping route
 router.get('/ping', function(req, res) {

@@ -27,17 +27,23 @@ block content
     script.
       document.forms['hatsForm'].addEventListener('submit', (event) => {
         event.preventDefault();
-        // TODO do something here to show the user that the form is being submitted
+        // TODO do something here to show user that form is being submitted
         fetch(event.target.action, {
           method: 'PUT',
           body: new URLSearchParams(new FormData(event.target)) // event.target is the form
         }).then((resp) => {
-          return resp.json(); // or resp.text() or whatever the server sends
+          if(resp.ok){
+            alert("hats Updated Successfully")
+            document.getElementById('hatsForm').reset()
+          }
+          else {
+            alert("Failed to Update hats")
+          }
         }).then((body) => {
-          alert("Update succeeded");
+          console.log(body)
           // TODO handle body
         }).catch((error) => {
           // TODO handle error
-          alert("Update failed " + error );
+          alert("Update failed " + error)
         });
       });

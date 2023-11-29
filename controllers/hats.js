@@ -54,8 +54,7 @@ ${JSON.stringify(req.body)}`)
     try {
         let toUpdate = await hats.findById(req.params.id)
         // Do updates of properties
-        if (req.body.price)
-            toUpdate.price = req.body.price;
+        if (req.body.price) toUpdate.price = req.body.price;
         if (req.body.style) toUpdate.style = req.body.style;
         if (req.body.color) toUpdate.color = req.body.color;
         let result = await toUpdate.save();
