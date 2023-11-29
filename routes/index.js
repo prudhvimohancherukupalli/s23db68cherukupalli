@@ -64,14 +64,16 @@ router.get('/login', function(req, res) {
 });
 
 // Login POST route
-router.post("/login", passport.authenticate("local"), function (req, res) {
+router.post("/login", passport.authenticate("local",{keepSessionInfo:true}), function (req, res) {
+  if(req.session.returnTo)
+  res.redirect(req.session.returnTo);
   res.redirect("/");
 });
 
 // Logout route
 router.get('/logout', function(req, res) {
   req.logout();
-  res.redirect('/');
+  res.redirect('/'); 
 });
 
 // Ping route
