@@ -9,12 +9,12 @@ router.get('/', function (req, res) {
 });
 
 // Registration page
-router.get('/register', function(req, res) {
+router.get('/register', function (req, res) {
   res.render('register', { title: 'Hats App Registration' });
 });
 
 // Registration POST route
-router.post('/register', function(req, res) {
+router.post('/register', function (req, res) {
   Account.findOne({ username: req.body.username })
     .then(function (user) {
       if (user != null) {
@@ -27,7 +27,7 @@ router.post('/register', function(req, res) {
       }
 
       let newAccount = new Account({ username: req.body.username });
-      Account.register(newAccount, req.body.password, function(err, user) {
+      Account.register(newAccount, req.body.password, function (err, user) {
         if (err) {
           console.log("Database creation issue: " + err);
           return res.render('register', {
@@ -59,20 +59,20 @@ router.post('/register', function(req, res) {
 });
 
 // Login page
-router.get('/login', function(req, res) {
+router.get('/login', function (req, res) {
   res.render('login', { title: 'Hats App Login', user: req.user });
 });
 
 // Login POST route
-router.post("/login", passport.authenticate("local",{keepSessionInfo:true}), function (req, res) {
-  if(req.session.returnTo)
-  res.redirect(req.session.returnTo);
+router.post("/login", passport.authenticate("local", { keepSessionInfo: true }), function (req, res) {
+  if (req.session.returnTo)
+    res.redirect(req.session.returnTo);
   res.redirect("/");
 });
 
 // Logout route
-router.get('/logout', function(req, res) {
-  req.logout(function(err) {
+router.get('/logout', function (req, res) {
+  req.logout(function (err) {
     if (err) {
       return next(err);
     }
@@ -82,7 +82,7 @@ router.get('/logout', function(req, res) {
 
 
 // Ping route
-router.get('/ping', function(req, res) {
+router.get('/ping', function (req, res) {
   res.status(200).send('pong');
 });
 
